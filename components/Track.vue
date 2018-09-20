@@ -10,7 +10,7 @@
       {{track.artists[0].name}}
     </p>
     <b-row align-h="around">
-      <b-button href="#" variant="outline-info">
+      <b-button variant="outline-info" @click='setTrack({ track })'>
         <icon name="play"></icon>
       </b-button>
       <b-button href="#" variant="outline-info">
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+  import { mapMutations } from 'vuex'
   export default {
     name: 'nuTrack',
     props: {
@@ -36,6 +37,7 @@
       }
     },
     methods: {
+      ...mapMutations(['setTrack']),
       likear () {
         this.isLiked = !this.isLiked
       }
@@ -65,8 +67,6 @@
       animation-name: like
       animation-duration: .8s
       animation-timing-function: steps(28)
-      // background-position: -2800px 0
-      // background-position: right
       animation-fill-mode: forwards
     
   @keyframes like

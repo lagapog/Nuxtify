@@ -51,5 +51,8 @@ module.exports = {
     }
   },
   css: ['@/assets/sass/main.sass'],
-  plugins: ['@/plugins/vue-awesome.js']
+  plugins: [
+    '@/plugins/vue-awesome.js',
+    '@/plugins/filter.js'
+  ]
 }

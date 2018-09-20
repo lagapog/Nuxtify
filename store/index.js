@@ -5,10 +5,16 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       tracks: [],
+      track: {},
+      selectedTrack: '',
       isLoading: false,
       showNotification: false
     },
     mutations: {
+      setTrack (state, payload) {
+        state.track = payload.track
+        state.selectedTrack = payload.track.id
+      },
       search (state, payload) {
         if (!payload.searchQuery) { return }
         state.isLoading = true

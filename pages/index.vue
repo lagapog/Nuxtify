@@ -9,16 +9,25 @@
             @keyup.enter.native="search({ searchQuery })"
           ></b-form-input>
           <b-input-group-append>
-            <b-btn @click="search({ searchQuery })" variant="outline-info">
+            <b-btn 
+              @click="search({ searchQuery })"
+              @keyup.enter="search({ searchQuery })"
+              variant="outline-info"
+            >
               Search
             </b-btn>
           </b-input-group-append>
         </b-input-group>
       </b-col>
     </b-row>
+    <nu-player></nu-player>
     <b-row class="mt-5">
-      <b-col cols="12" md="4" xl="3" v-for="t in tracks" :key="t.id">
-        <nuTrack class="mx-auto" :track="t"/>
+      <nu-loader v-if="isLoading"></nu-loader>
+      <b-col v-else cols="12" md="4" xl="3" v-for="t in tracks" :key="t.id">
+        <nuTrack 
+          :class="['mx-auto', { 'is-selected': selectedTrack === t.id }]"
+          :track="t"
+        />
       </b-col>
     </b-row>
   </b-container>
@@ -27,14 +36,15 @@
 <script>
 import nuLoader from '~/components/shared/Loader.vue'
 import nuTrack from '~/components/Track.vue'
+import nuPlayer from '~/components/Player.vue'
 import { mapState, mapMutations } from 'vuex'
 
 export default {
   components: {
-    nuLoader, nuTrack
+    nuLoader, nuTrack, nuPlayer
   },
   computed: {
-    ...mapState([ 'tracks' ])
+    ...mapState([ 'tracks', 'isLoading', 'selectedTrack' ])
   },
   data () {
     return {
@@ -50,5 +60,6 @@ export default {
 <style lang="sass" scoped>
   .container-fluid
     margin-top: 57px
-
+  .is-selected 
+    border: 2px solid #20bfc5;
 </style>
