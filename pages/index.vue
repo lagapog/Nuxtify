@@ -37,7 +37,7 @@
 import nuLoader from '~/components/shared/Loader.vue'
 import nuTrack from '~/components/Track.vue'
 import nuPlayer from '~/components/Player.vue'
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
@@ -52,7 +52,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['search'])
+    ...mapActions(['search'])
   }
 }
 </script>

@@ -4,8 +4,8 @@
     <b-navbar-brand to="/" class="nuHeader-title">NUXTIFY</b-navbar-brand>
     <b-collapse is-nav id="nav_collapse">
       <b-navbar-nav>
-        <b-nav-item to="about">about</b-nav-item>
-        <b-nav-item to="author">author</b-nav-item>
+        <b-nav-item to="/about">about</b-nav-item>
+        <b-nav-item to="/author">author</b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
         <b-nav-item-dropdown text="Lang" right>

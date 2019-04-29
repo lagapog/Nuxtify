@@ -13,7 +13,7 @@
       <b-button variant="outline-info" @click='setTrack({ track })'>
         <icon name="play"></icon>
       </b-button>
-      <b-button href="#" variant="outline-info">
+      <b-button variant="outline-info" :to="`/tracks/${track.id}`">
         <icon name="link"></icon>
       </b-button>
       <div 

@@ -6,24 +6,45 @@ const createStore = () => {
     state: {
       tracks: [],
       track: {},
+      trackToPlay: {},
       selectedTrack: '',
       isLoading: false,
       showNotification: false
     },
-    mutations: {
-      setTrack (state, payload) {
-        state.track = payload.track
-        state.selectedTrack = payload.track.id
-      },
-      search (state, payload) {
+    actions: {
+      search({commit, state}, payload) {
         if (!payload.searchQuery) { return }
-        state.isLoading = true
+        commit('startLoading')
         trackService.search(payload.searchQuery)
           .then(res => {
             state.showNotification = res.tracks.total === 0
             state.tracks = res.tracks.items
-            state.isLoading = false
+            commit('finishLoading')
           })
+      },
+      goToTrack ({commit, state}, payload) {
+        commit('startLoading')
+        trackService.getById(payload.id)
+          .then(res => {
+            console.log(res)
+            state.track = res
+            commit('finishLoading')
+          })
+      }
+    },
+    mutations: {
+      setTrack (state, payload) {
+        state.trackToPlay = payload.track
+        state.selectedTrack = payload.track.id
+      },
+      clearTrack (state) {
+        state.track = {}
+      },
+      startLoading(state) {
+        state.isLoading = true
+      },
+      finishLoading(state) {
+        state.isLoading = false
       }
     }
   })

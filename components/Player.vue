@@ -1,14 +1,14 @@
 <template>
-  <div v-if='track.name' class="vu-player">
+  <div v-if='trackToPlay.name' class="vu-player">
     <div>
-      <img :src='track.album.images[2].url' />
+      <img :src='trackToPlay.album.images[2].url' />
     </div>
     <div>
-      <h6>{{ track.name }}</h6>
-      <small>{{ track.duration_ms | ms-to-min }}</small>
+      <h6>{{ trackToPlay.name }}</h6>
+      <small>{{ trackToPlay.duration_ms | ms-to-min }}</small>
     </div>
-    <div v-if='track.preview_url'>
-      <audio controls :src='track.preview_url'></audio>
+    <div v-if='trackToPlay.preview_url'>
+      <audio controls :src='trackToPlay.preview_url'></audio>
     </div>
     <div v-else>
       <span>No existe audio disponible</span>
@@ -21,7 +21,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'nuPlayer',
   computed: {
-    ...mapState(['track'])
+    ...mapState(['trackToPlay'])
   }
 }
 </script>
